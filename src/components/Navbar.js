@@ -1,24 +1,42 @@
 import React from "react";
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ currentUser, onLogout }) => {
   return (
-    <nav>
-      <Link to="/">Home</Link>
-      {currentUser ? (
-        <>
-          <Link to="/profile">Profile</Link>
-          {currentUser.roles.includes("ROLE_ADMIN") && <Link to="/admin">Admin Board</Link>}
-          {currentUser.roles.includes("ROLE_MODERATOR") && <Link to="/mod">Moderator Board</Link>}
-          <button onClick={onLogout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </>
-      )}
-    </nav>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          Web AES
+        </Typography>
+        {currentUser ? (
+          <>
+            {currentUser.roles.includes("ROLE_ADMIN") && (
+              <Button color="inherit" component={Link} to="/admin">
+                Admin Board
+              </Button>
+            )}
+            {currentUser.roles.includes("ROLE_MODERATOR") && (
+              <Button color="inherit" component={Link} to="/mod">
+                Moderator Board
+              </Button>
+            )}
+            <Button color="inherit" onClick={onLogout}>
+              Cerrar Sesión
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button color="inherit" component={Link} to="/login">
+              Iniciar Sesión
+            </Button>
+            <Button color="inherit" component={Link} to="/register">
+              Registrarse
+            </Button>
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 };
 
