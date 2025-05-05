@@ -2,7 +2,16 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000/api/test/";
 
-const getPublicContent = () => axios.get(API_URL + "all");
+const getPublicContent = async () => {
+  try {
+    const response = await axios.get(API_URL + "all");
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Error al cargar el contenido público."
+    );
+  }
+};
 
 const getUserBoard = () => axios.get(API_URL + "user", { headers: authHeader() });
 

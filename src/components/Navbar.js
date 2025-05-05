@@ -6,9 +6,15 @@ const Navbar = ({ currentUser, onLogout }) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Web AES
+        <Typography
+          variant="h6"
+          sx={{ flexGrow: 1, textDecoration: "none", color: "inherit" }}
+          component={Link}
+          to="/"
+        >
+          {currentUser ? `Bienvenido, ${currentUser.username}` : "Web AES"}
         </Typography>
+
         {currentUser ? (
           <>
             {currentUser.roles.includes("ROLE_ADMIN") && (

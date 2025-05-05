@@ -16,13 +16,22 @@ const Login = ({ setCurrentUser }) => {
       const user = await AuthService.login(username, password);
       setCurrentUser(user);
       toast.success(`Bienvenido, ${user.username}!`);
-      navigate("/profile"); // Redirige al perfil después de iniciar sesión
+  
+      // Redirige al board correspondiente según el rol del usuario
+      if (user.roles.includes("ROLE_ADMIN")) {
+        navigate("/admin");
+      } else if (user.roles.includes("ROLE_MODERATOR")) {
+        navigate("/mod");
+      } else if (user.roles.includes("ROLE_USER")) {
+        navigate("/user");
+      } else {
+        toast.error("No tienes un rol asignado válido.");
+      }
     } catch (err) {
       setError("Usuario o contraseña incorrectos");
       toast.error("Error al iniciar sesión. Verifica tus credenciales.");
     }
   };
-
   return (
     <Container maxWidth="xs">
       <Box

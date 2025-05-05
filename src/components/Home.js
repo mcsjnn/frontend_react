@@ -7,16 +7,8 @@ const Home = () => {
 
   useEffect(() => {
     UserService.getPublicContent()
-      .then((response) => {
-        setContent(response.data);
-      })
-      .catch((error) => {
-        setContent(
-          (error.response && error.response.data && error.response.data.message) ||
-            error.message ||
-            "Error al cargar el contenido público."
-        );
-      });
+      .then((data) => setContent(data))
+      .catch((error) => setContent(error.message));
   }, []);
 
   return (

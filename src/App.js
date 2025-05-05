@@ -20,6 +20,7 @@ const App = () => {
     AuthService.logout();
     setCurrentUser(null);
     toast.info("Has cerrado sesión correctamente.");
+    window.location.href = "/"; // Redirige al inicio después de cerrar sesión
   };
 
   const handleLoginSuccess = (user) => {
