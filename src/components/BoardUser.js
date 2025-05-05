@@ -12,16 +12,20 @@ const BoardUser = () => {
       .catch((error) => {
         setContent(
           (error.response && error.response.data && error.response.data.message) ||
-            error.message ||
-            "Error al cargar el contenido del usuario."
+          error.message ||
+          "Error al cargar el contenido del usuario."
         );
       });
   }, []);
 
   return (
-    <div>
-      <h1>User Board</h1>
-      <p>{content}</p>
+    <div style={{ padding: "20px" }}>
+      <h1>Panel de Usuarios</h1>
+      <p>Bienvenido al panel de usuarios. Aquí puedes acceder a tus datos y funcionalidades disponibles.</p>
+      <div style={{ marginTop: "20px", padding: "10px", border: "1px solid #ccc", borderRadius: "8px" }}>
+        <h2>Contenido del Usuario</h2>
+        <p>{content}</p>
+      </div>
     </div>
   );
 };
