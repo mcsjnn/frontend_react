@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = import.meta.env.REACT_VITE_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 const register = (data) => axios.post(API_URL + "signup", data);
 
